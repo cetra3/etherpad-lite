@@ -1,3 +1,53 @@
+# 1.5.0
+ * NEW: Lots of performance improvements for page load times
+ * NEW: Hook for adding CSS to Exports
+ * NEW: Allow shardable socket io
+ * NEW: Allow UI to show when attr/prop is applied (CSS)
+ * NEW: Various scripts
+ * NEW: Export full fidelity pads (including authors etc.)
+ * NEW: Various front end tests
+ * NEW: Backend tests
+ * NEW: switchPad hook to instantly switch between pads
+ * NEW: Various translations
+ * NEW: Icon sets instead of images to provide quality high DPI experience
+ * Fix: HTML Import blocking / hanging server
+ * Fix: Export Bullet / Numbered lists HTML
+ * Fix: Swagger deprecated warning
+ * Fix: Bad session from crashing server
+ * Fix: Allow relative settings path
+ * Fix: Stop attributes being improperly assigned between 2 lines
+ * Fix: Copy / Move Pad API race condition
+ * Fix: Save all user preferences
+ * Fix: Upgrade majority of dependency inc upgrade to SocketIO1+
+ * Fix: Provide UI button to restore maximized chat window
+ * Fix: Timeslider UI Fix
+ * Fix: Remove Dokuwiki
+ * Fix: Remove long paths from windows build (stops error during extract)
+ * Fix: Various globals remvoed
+ * Fix: Move all scripts into bin/
+ * Fix: Various CSS bugfixes for Mobile devices
+ * Fix: Overflow Toolbar
+ * Fix: Line Attribute management
+
+# 1.4.1
+ * NEW: Translations
+ * NEW: userLeave Hook
+ * NEW: Script to reinsert all DB values of a Pad
+ * NEW: Allow for absolute settings paths
+ * NEW: API: Get Pad ID from read Only Pad ID
+ * NEW: Huge improvement on MySQL database read/write (InnoDB to MyISAM)
+ * NEW: Hook for Export File Name
+ * NEW: Preprocessor Hook for DOMLine attributes (allows plugins to wrap entire line contents)
+ * Fix: Exception on Plugin Search and fix for plugins not being fetched
+ * Fix: Font on innerdoc body can be arial on paste
+ * Fix: Fix Dropping of messages in handleMessage
+ * Fix: Don't use Abiword for HTML exports
+ * Fix: Color issues with user Icon
+ * Fix: Timeslider Button
+ * Fix: Session Deletion error
+ * Fix: Allow browser tabs to be cycled when focus is in editor
+ * Fix: Various Editor issues with Easysync potentially entering forever loop on bad changeset
+ 
 # 1.4
  * NEW: Disable toolbar items through settings.json
  * NEW: Internal stats/metrics engine

@@ -130,6 +130,11 @@ exports.minify = true;
 exports.abiword = null;
 
 /**
+ * Should we support none natively supported file types on import?
+ */
+exports.allowUnknownFileEnds = true;
+
+/**
  * The log level of log4js
  */
 exports.loglevel = "INFO";
@@ -177,8 +182,13 @@ exports.abiwordAvailable = function()
 exports.reloadSettings = function reloadSettings() {
   // Discover where the settings file lives
   var settingsFilename = argv.settings || "settings.json";
-  settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
 
+  if (path.resolve(settingsFilename)===settingsFilename) {
+    settingsFilename = path.resolve(settingsFilename);
+  } else {
+    settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
+  }
+  
   var settingsStr;
   try{
     //read the settings sync
@@ -223,7 +233,21 @@ exports.reloadSettings = function reloadSettings() {
 
   log4js.configure(exports.logconfig);//Configure the logging appenders
   log4js.setGlobalLogLevel(exports.loglevel);//set loglevel
+  process.env['DEBUG'] = 'socket.io:' + exports.loglevel; // Used by SocketIO for Debug
   log4js.replaceConsole();
+
+  if(exports.abiword){
+    // Check abiword actually exists
+    if(exports.abiword != null)
+    {
+      fs.exists(exports.abiword, function(exists) {
+        if (!exists) {
+          console.error("Abiword does not exist at this path, check your settings file");
+          exports.abiword = null;
+        }
+      });
+    }
+  }
 
   if(!exports.sessionKey){ // If the secretKey isn't set we also create yet another unique value here
     exports.sessionKey = randomString(32);
